@@ -47,6 +47,7 @@
             nout = parseFloat(document.getElementById('nout').value); // number of teeth on the frame
             nin = parseFloat(document.getElementById('nin').value); // number of teeth on the gear
             p = parseFloat(document.getElementById('p').value); // position of hole. 0: center. 1: edge
+
             // parameters
             rout = 380; // radius of frame
             rin = rout / nout * nin; // radius of gear
@@ -55,22 +56,15 @@
             // holders
             var x = [];
             var y = [];
-            theta = 0; // position of gear
-            alpha = 0; // rotation of the gear
-            while (theta * rout / teeth < lcm(nout, nin)) {
-                theta += dt;
-                alpha += dt - dt * rout / rin;
-                // center of gear
-                xc = Math.cos(theta) * (rout - rin)
-                yc = Math.sin(theta) * (rout - rin)
-                // position of hole
-                xh = xc + Math.cos(alpha) * rin * p
-                yh = yc + Math.sin(alpha) * rin * p
-                // append
-                x.push(xh)
-                y.push(yh)
+            for (var i=0; i<=nout; i++) {
+                theta = i / nout * 2 * Math.PI;
+                dt = 0.5 / nout * 2 * Math.PI;
+                teeth_height = 0.5 * teeth;
+                x.push(Math.cos(theta) * (rout + teeth_height));
+                y.push(Math.sin(theta) * (rout + teeth_height));
+                x.push(Math.cos(theta + dt) * (rout - teeth_height));
+                y.push(Math.sin(theta + dt) * (rout - teeth_height));
             }
-
             plot(x, y);
         }
 
