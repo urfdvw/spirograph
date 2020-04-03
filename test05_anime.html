@@ -6,11 +6,29 @@
     <input type="text" id="nout" value='96' onchange="fire()"> number of teeth on the frame<br>
     <input type="text" id="nin" value='33' onchange="fire()"> number of teeth on the gear<br>
     <input type="text" id="p" value='0.5' onchange="fire()"> position of hole. 0: on the center. 1: on the edge<br>
+    <input type="checkbox" id='anime' unchecked >animation<br>
+    <button onclick="fire_button()">draw</button><br>
 
     <canvas id="myCanvas" width="800" height="800" style="border:1px solid #d3d3d3;">
         Your browser does not support the HTML5 canvas tag.</canvas>
 
     <script>
+        /*
+        button function
+        */
+        function fire () {
+            if(!(document.getElementById("anime").checked)){
+                direct_draw();
+            }
+        }
+
+        function fire_button () {
+            if(document.getElementById("anime").checked){
+                anime_draw();
+            } else {
+                direct_draw();
+            }
+        }
         /* 
         Math functions 
         */
@@ -106,6 +124,7 @@
             // dependent parameters
             rin = rout / nout * nin; // radius of gear
             teeth = rout * Math.PI * 2 / nout; // teeth size in arc length
+            theta_full = lcm(nout, nin) / nout * 2 * Math.PI
             // animation parameter
             rot = 0;
         }
@@ -197,6 +216,8 @@
             rot = theta_full;
             window.requestAnimationFrame(draw);
         }
+        direct_draw();
+        
 
     </script>
 </body>
