@@ -48,11 +48,11 @@
         }
 
         function pos_rot(x, y, xc, yc, alpha) {
-            for (var i=0; i<x.length; i++) {
+            for (var i = 0; i < x.length; i++) {
                 var xt = x[i];
                 var yt = y[i];
                 // rotate
-                var r = Math.sqrt(xt*xt + yt*yt);
+                var r = Math.sqrt(xt * xt + yt * yt);
                 var theta = Math.atan2(yt, xt) + alpha;
                 // move
                 x[i] = xc + r * Math.cos(theta);
@@ -75,8 +75,9 @@
             }
             return [x, y]
         }
-
+        var rot = 0
         function fire() {
+            rot = rot + 0.01;
             // inputs
             nout = parseFloat(document.getElementById('nout').value); // number of teeth on the frame
             nin = parseFloat(document.getElementById('nin').value); // number of teeth on the gear
@@ -92,7 +93,6 @@
             var y = [];
             theta = 0; // position of gear
             alpha = 0; // rotation of the gear
-            rot = parseFloat(document.getElementById('p').value); // fixed rotation
             theta += rot;
             alpha += rot - rot * rout / rin;
             // center of gear
@@ -112,9 +112,13 @@
             x = g[0];
             y = g[1];
             plot(x, y)
+
+            setTimeout(function () {
+                window.requestAnimationFrame(fire);
+            }, 1000 / 60);
         }
 
-        fire();
+        window.requestAnimationFrame(fire);
     </script>
 </body>
 
