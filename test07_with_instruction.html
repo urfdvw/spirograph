@@ -20,8 +20,7 @@
     </div>
 
     <div id="doc">
-        <iframe width="800" height="800"
-            src="https://docs.google.com/document/d/e/2PACX-1vSD7jYAJGxawT_DiF7n7bwQXq42IVOZyPHSCb8mJTlbba4ozhGGGBMqPBW0Y9oSIxAxNvc-7h0CeaN9/pub?embedded=true"></iframe>
+        <iframe width="800" height="800" src="https://docs.google.com/document/d/e/2PACX-1vSD7jYAJGxawT_DiF7n7bwQXq42IVOZyPHSCb8mJTlbba4ozhGGGBMqPBW0Y9oSIxAxNvc-7h0CeaN9/pub?embedded=true"></iframe>
     </div>
 
     <script>
@@ -137,7 +136,7 @@
         var rin = rout / nout * nin; // radius of gear
         var teeth = rout * Math.PI * 2 / nout; // teeth size in arc length
         var theta_full = lcm(nout, nin) / nout * 2 * Math.PI
-        // animation parameter
+            // animation parameter
         var rot = 0;
 
         function update_para() {
@@ -149,7 +148,7 @@
             rin = rout / nout * nin; // radius of gear
             teeth = rout * Math.PI * 2 / nout; // teeth size in arc length
             theta_full = lcm(nout, nin) / nout * 2 * Math.PI
-            // animation parameter
+                // animation parameter
             rot = 0;
         }
 
@@ -191,10 +190,10 @@
                 // center of gear
                 xc = Math.cos(theta) * (rout - rin)
                 yc = Math.sin(theta) * (rout - rin)
-                // position of hole
+                    // position of hole
                 xh = xc + Math.cos(alpha) * rin * p
                 yh = yc + Math.sin(alpha) * rin * p
-                // append
+                    // append
                 x.push(xh)
                 y.push(yh)
             }
@@ -209,20 +208,20 @@
         function draw() {
             /* plot */
             plot_clear()
-            // frame
+                // frame
             cur = gear(teeth, nout);
             plot(cur[0], cur[1], 'gray')
-            // plot gear
+                // plot gear
             cur = gear(teeth, nin);
             pos_rot(cur[0], cur[1], xc, yc, alpha);
             plot(cur[0], cur[1], 'gray')
-            // plot hole
+                // plot hole
             plot_hole(xh, yh);
             // trace
             cur = trace(rot);
             plot(cur[0], cur[1])
 
-            setTimeout(function () {
+            setTimeout(function() {
                 if (rot <= theta_full) {
                     rot += dt;
                     window.requestAnimationFrame(draw);
