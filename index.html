@@ -9,9 +9,11 @@
     <div id="app">
         <h1>Simulation of a spirograph</h1>
         <button onclick="hide()">Show/Hide Instructions</button><br>
+
         <input type="text" id="nout" value='96' onchange="fire()"> number of teeth on the frame<br>
         <input type="text" id="nin" value='33' onchange="fire()"> number of teeth on the gear<br>
-        <input type="text" id="p" value='0.5' onchange="fire()"> position of hole. 0: on the center. 1: on the edge<br>
+        position of hole:<text id="p"> 0.5 </text> <br>
+        center <input type="range" id="vol" name="vol" min="0" max="10" value=5 onchange="fire()"> edge <br>
         <input type="checkbox" id='anime' unchecked>animation<br>
         <button onclick="fire_button()">draw</button><br>
 
@@ -132,7 +134,7 @@
         // input parameters
         var nout = parseFloat(document.getElementById('nout').value); // number of teeth on the frame
         var nin = parseFloat(document.getElementById('nin').value); // number of teeth on the gear
-        var p = parseFloat(document.getElementById('p').value); // position of hole. 0: center. 1: edge
+        var p = parseFloat(document.getElementById('p').innerHTML); // position of hole. 0: center. 1: edge
         // dependent parameters
         var rin = rout / nout * nin; // radius of gear
         var teeth = rout * Math.PI * 2 / nout; // teeth size in arc length
@@ -144,7 +146,8 @@
             // input parameters
             nout = parseFloat(document.getElementById('nout').value); // number of teeth on the frame
             nin = parseFloat(document.getElementById('nin').value); // number of teeth on the gear
-            p = parseFloat(document.getElementById('p').value); // position of hole. 0: center. 1: edge
+            p = parseFloat(document.getElementById('vol').value) / 10;
+            document.getElementById('p').innerHTML = '' + p; // position of hole. 0: center. 1: edge
             // dependent parameters
             rin = rout / nout * nin; // radius of gear
             teeth = rout * Math.PI * 2 / nout; // teeth size in arc length
