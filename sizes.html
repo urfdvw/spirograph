@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<text>Number of theeth on the Frame: 96</text> <br>
+<text>Number of theeth on the gear: </text> 
+<input type='text' onchange="calculate(this)" value=24> 
+<text>between 18 and 50</text><br>
+<text>indentation diameter: </text>
+<text id='dia'>16</text><br>
+<button
+onclick="window.open('index.html')">
+Spirograph Simulation
+</button>
+
+<script>
+	function calculate(elem) {
+        var n = parseFloat(elem.value)
+        if (n < 18) {
+            alert(n + ' is too small');
+            return
+        }
+        if (n > 50) {
+            alert(n + ' is too large');
+            return
+        }
+    	document.getElementById('dia').innerHTML = '' + 
+        Math.round(n * 0.8 + 1.5336 - 5);
+    }
+</script>
+
+</body>
+</html>
