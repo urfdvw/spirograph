@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html>
-<body>
 
-<text>Number of theeth on the Frame: 96</text> <br>
-<text>Number of theeth on the gear: </text> 
-<input type='text' onchange="calculate(this)" value=24> 
-<text>between 18 and 50</text><br>
-<text>Indentation diameter: </text>
-<text id='dia'>16</text><br>
-<text'>Module: 0.8</text><br>
-<text'>Pitch Angle: 30</text><br>
-<button
-onclick="window.open('index.html')">
-Spirograph Simulation
-</button>
+<body>    
+    <button onclick="window.open('index.html')">
+        Spirograph Simulation
+    </button>
+    <h1>Gear Properties</h1>
+    <text>Module: 0.8</text><br>
+    <text>Number of theeth on the gear: </text>
+    <input type='text' onchange="calculate(this)" value=24>
+    <text>between 18 and 50</text><br>
+    <text>Pitch Angle: 30</text><br>
+    
+    <text>Height 2.5</text><br>
 
-<script>
-	function calculate(elem) {
-        var n = parseFloat(elem.value)
-        if (n < 18) {
-            alert(n + ' is too small');
-            return
+    <h1>Indentation</h1>
+    <text>Indentation diameter: </text>
+    <text id='dia'>16</text><br>
+    <text>Raised by 1.5</text><br>
+
+    <h1>Holes</h1>
+    <text>Hole diameter: 3</text>
+
+    <h1>Frame Properites</h1>
+    <text>Module: 0.8</text><br>
+    <text>Number of theeth on the Frame: 96</text> <br>
+    <text>Pitch Angle: 30</text><br>
+    <text>Outside diameter: 88</text><br>
+
+    <script>
+        function calculate(elem) {
+            var n = parseFloat(elem.value)
+            if (n < 18) {
+                alert(n + ' is too small');
+                return
+            }
+            if (n > 50) {
+                alert(n + ' is too large');
+                return
+            }
+            document.getElementById('dia').innerHTML = '' +
+                Math.round(n * 0.8 + 1.5336 - 5);
         }
-        if (n > 50) {
-            alert(n + ' is too large');
-            return
-        }
-    	document.getElementById('dia').innerHTML = '' + 
-        Math.round(n * 0.8 + 1.5336 - 5);
-    }
-</script>
+    </script>
 
 </body>
+
 </html>
